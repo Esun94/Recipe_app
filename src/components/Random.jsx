@@ -32,18 +32,30 @@ function Random() {
 
     };
 
+    const renderInstruction = (instructions) => {
+        return (
+            instructions
+        )
+    } 
+
     return (
         <div className='border border-blue-600 m-2 p-2'>
                 {/* <div className='flex text-center justify-center text-2xl'>Surprise Me !</div> */}
             <div className='grid grid-cols-4 p-8'>
                 {random.map((recipe) => {
                     return (
+                        <>
                         <div className="border rounded-lg overflow-hidden shadow-lg relative h-96 min-h-full mx-5 " key={recipe.id}>
                             <div className='border rounded-lg bg-gradient-to-t from-gray-900 to-transparent absolute w-full h-full'>
                                 <img className=" border rounded-lg w-full h-full absolute object-cover left-0 -z-10" src={recipe.image} alt="prepared food"></img>
                             </div>
                             <p className="font-bold text-xl mb-2 absolute z-10 bottom-0 w-full h-2/5 text-center flex justify-center items-center left-1/2 -translate-x-1/2 translate-y-0 text-white">{recipe.title}</p>
+                            {/* {renderInstruction(recipe.instructions)} */}
                         </div>
+                        <div dangerouslySetInnerHTML={{ __html : recipe.instructions}}>
+                            {/* {renderInstruction(recipe.instructions)} */}
+                        </div>
+                        </>
                     );
                 })}
             </div>

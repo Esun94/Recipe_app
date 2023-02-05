@@ -13,6 +13,7 @@ function Popular() {
     const searchIngredients = async () => {
 
       // localStorage to prevent api call on every reload
+      
       // const check = localStorage.getItem('random');
 
       // if (check) {
