@@ -1,9 +1,7 @@
-import { Container } from 'postcss';
 import React, { useEffect, useState } from 'react'
 
 function Random() {
     // useState to display results
-
     const [random, setRandom] = useState([]);
 
     // useEffect render api fetch results on intial load
@@ -14,22 +12,12 @@ function Random() {
 
     // GET random recipes
     const getRandom = async () => {
-
-        // localStorage to prevent api call on every reload
-        // const check = localStorage.getItem('random');
-
-        // if (check) {
-        //     setRandom(JSON.parse(check))
-        // } else {
         const api = await fetch(
             `https://api.spoonacular.com/recipes/random?apiKey=${import.meta.env.VITE_API_KEY}&number=4`
         )
         const data = await api.json();
-
-        // localStorage.setItem('random', JSON.stringify(data.recipes))
         setRandom(data.recipes)
         console.log(data)
-        // }
 
     };
 
@@ -41,7 +29,6 @@ function Random() {
 
     return (
         <div className='border border-blue-600 m-2 p-2'>
-            {/* <div className='flex text-center justify-center text-2xl'>Surprise Me !</div> */}
             <div className='grid grid-cols-4 p-8'>
                 {random.map((recipe) => {
                     return (

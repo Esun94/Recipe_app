@@ -1,13 +1,12 @@
 import React from 'react';
+import MealPrep from '../components/MealPrep';
 import Random from '../components/Random';
-import Search from '../components/Search';
 // import Vegetarian from '../components/Vegetarian';
-import Popular from '../components/Search';
 
 function Home() {
     return (
         <div>
-            <Search />
+            <MealPrep />
             <Random />
             {/* <Vegetarian /> */}
         </div>
