@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 
 function MealPrep() {
   const [mealData, setMealData] = useState([]);
+  const [mealCals, setMealCals] = useState();
+  const [mealProtein, setMealProtein] = useState();
+  const [mealFats, setMealFats] = useState();
+  const [mealCarbs, setMealCarbs] = useState();
   const [calories, setCalories] = useState(2000);
 
 
@@ -15,14 +19,15 @@ function MealPrep() {
       `https://api.spoonacular.com/mealplanner/generate?apiKey=${import.meta.env.VITE_API_KEY}&timeFrame=day&targetCalories=${calories}`
     );
     const data = await api.json();
-    setMealData(data.meals);
+    setMealData(data.meals, data.nutrients);
+    setMealCals(data.nutrients.calories)
+    setMealFats(data.nutrients.fat)
+    setMealProtein(data.nutrients.protein)
+    setMealCarbs(data.nutrients.carbohydrates)
     console.log(data)
 
   }
 
-
-  // const nutrients = mealData.nutrients
-  // const meals = mealData.meals
 
   return (
     <div className='border border-blue-600 m-2 p-2 grid justify-center items-center'>
@@ -35,33 +40,38 @@ function MealPrep() {
         />
       </div>
 
-
       <button className='border border-red-600 p-2 bg-red-400 rounded-xl max-w-lg' onClick={getMealData}> Get Daily Meal Plan </button>
 
 
-      <ol className='meals'>
-        {/* Meals: */}
-        {mealData.map((meals) => {
-          return (
-            <div key={meals.id} className="p-4">
-              <li><b>Title:</b> {meals.title}</li>
-              <li><b>Prep Time:</b> {meals.readyInMinutes}</li>
-              <li><b>Instructions:</b> <a href={meals.sourceUrl}>Link</a></li>
-
-            </div>
-          )
-        })}
-      </ol>
-
-
-
-      {/* <div>
-        <h1>Macros</h1>
-        <ul className="nutrients">
-          <li>Calories: {mealData}</li>
-        </ul>
-      </div> */}
-
+      {mealData.map((meals) => {
+        return (
+          <article key={meals.id} className="meals p-4">
+            <h1><b>Title:</b> {meals.title}</h1>
+            <ul>
+              <li><b>Prep Time:</b> {meals.readyInMinutes} Minutes</li>
+              <li><b>Number of Servings:</b> {meals.servings} Servings</li>
+            </ul>
+            <a href={meals.sourceUrl} target='_blank'><b>Link: </b>Go to Recipe</a>
+          </article>
+        )
+      })}
+      <div className='border border-blue-300 flex justify-center p-2'>Total Nutritional Value: </div>
+      <ul className='border border-blue-300 text-center p-3'>
+        <li>
+        Calories: <b>{mealCals}</b> 
+        </li>
+        <li>
+        Protein: <b>{mealProtein}g</b> 
+        </li>
+        <li>
+        Fats: <b>{mealFats}g</b> 
+        </li>
+        <li>
+        Carbs: <b>{mealCarbs}g</b> 
+        </li>
+         
+        
+      </ul>
     </div>
 
 
