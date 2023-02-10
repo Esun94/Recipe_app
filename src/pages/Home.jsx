@@ -6,8 +6,8 @@ import Random from '../components/Random';
 function Home() {
     return (
         <div>
-            <MealPrep />
             <Random />
+            <MealPrep />
             {/* <Vegetarian /> */}
         </div>
     )

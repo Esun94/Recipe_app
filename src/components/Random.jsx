@@ -6,9 +6,9 @@ function Random() {
 
     // useEffect render api fetch results on intial load
 
-    // useEffect(() => {
-    //     getRandom();
-    // }, []);
+    useEffect(() => {
+        getRandom();
+    }, []);
 
     // GET random recipes
     const getRandom = async () => {
@@ -20,12 +20,6 @@ function Random() {
         console.log(data)
 
     };
-
-    // const renderInstruction = (instructions) => {
-    //     return (
-    //         instructions
-    //     )
-    // } 
 
     return (
         <div className='border border-blue-600 m-2 p-2'>

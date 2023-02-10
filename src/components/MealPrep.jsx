@@ -32,46 +32,46 @@ function MealPrep() {
   return (
     <div className='border border-blue-600 m-2 p-2 grid justify-center items-center'>
 
+      <h1 className='flex justify-center'>Input Total Calories</h1>
       <div className='flex justify-center m-3'>
         <input
+          className='text-center'
           type='number'
           placeholder='Calories (e.g. 2000)'
           onChange={handleChange}
         />
       </div>
 
-      <button className='border border-red-600 p-2 bg-red-400 rounded-xl max-w-lg' onClick={getMealData}> Get Daily Meal Plan </button>
-
-
       {mealData.map((meals) => {
         return (
-          <article key={meals.id} className="meals p-4">
+          <div key={meals.id} className="meals p-4">
             <h1><b>Title:</b> {meals.title}</h1>
             <ul>
               <li><b>Prep Time:</b> {meals.readyInMinutes} Minutes</li>
               <li><b>Number of Servings:</b> {meals.servings} Servings</li>
             </ul>
             <a href={meals.sourceUrl} target='_blank'><b>Link: </b>Go to Recipe</a>
-          </article>
+          </div>
         )
       })}
       <div className='border border-blue-300 flex justify-center p-2'>Total Nutritional Value: </div>
       <ul className='border border-blue-300 text-center p-3'>
         <li>
-        Calories: <b>{mealCals}</b> 
+          Calories: <b>{mealCals}</b>
         </li>
         <li>
-        Protein: <b>{mealProtein}g</b> 
+          Protein: <b>{mealProtein}g</b>
         </li>
         <li>
-        Fats: <b>{mealFats}g</b> 
+          Fats: <b>{mealFats}g</b>
         </li>
         <li>
-        Carbs: <b>{mealCarbs}g</b> 
+          Carbs: <b>{mealCarbs}g</b>
         </li>
-         
-        
       </ul>
+
+      <button className='border border-red-600 p-2 bg-red-400 rounded-xl left-1/2 -translate-50-50 m-3' onClick={getMealData}> Get Daily Meal Plan </button>
+
     </div>
 
 
